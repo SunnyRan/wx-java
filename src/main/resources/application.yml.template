@@ -6,11 +6,8 @@ logging:
 wx:
   mp:
     configs:
-      - appId: 1111 （一个公众号的appid）
-        secret: 1111（公众号的appsecret）
-        token: 111 （接口配置里的Token值）
+      - appId: wxafcb7752886aa01b
+        secret: 27b1212a8be8d4159a59d0b9500f8bda
+        token: ba0497566cc04d8ca4fde4af4a3b7707
         aesKey: 111 （接口配置里的EncodingAESKey值）
-      - appId: 2222 （另一个公众号的appid，以下同上）
-        secret: 1111
-        token: 111
-        aesKey: 111
+
