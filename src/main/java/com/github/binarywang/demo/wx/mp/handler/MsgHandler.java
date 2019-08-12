@@ -55,7 +55,6 @@ public class MsgHandler extends AbstractHandler {
                 for(String first : name){
                     address = address.replaceFirst(first,"");
                 }
-                logger.info("WxMpXmlOutMessage:"+address);
                 WxMpSemanticQuery wxMpSemanticQuery = new WxMpSemanticQuery();
                 wxMpSemanticQuery.setQuery(address);
                 wxMpSemanticQuery.setCategory("LOC_POI");
