@@ -47,8 +47,9 @@ public class WxMenuController {
         WxMenu menu = new WxMenu();
         WxMenuButton button1 = new WxMenuButton();
         button1.setType(MenuButtonType.CLICK);
-        button1.setName("今日歌曲");
-        button1.setKey("V1001_TODAY_MUSIC");
+        button1.setName("语音下单");
+        button1.setKey("V1001_SEND_ORDER");
+
 
 //        WxMenuButton button2 = new WxMenuButton();
 //        button2.setType(WxConsts.BUTTON_MINIPROGRAM);
@@ -89,7 +90,7 @@ public class WxMenuController {
             HttpServletRequest request = servletRequestAttributes.getRequest();
             URL requestURL = new URL(request.getRequestURL().toString());
             String url = this.wxService.switchoverTo(appid).oauth2buildAuthorizationUrl(
-                String.format("%s://%s/wx/redirect/%s/greet", requestURL.getProtocol(), requestURL.getHost(), appid),
+                String.format("%s://%s/wx/redirect/%s/greet", requestURL.getProtocol(), "http://www.dadawx.cn", appid),
                 WxConsts.OAuth2Scope.SNSAPI_USERINFO, null);
             button34.setUrl(url);
         }

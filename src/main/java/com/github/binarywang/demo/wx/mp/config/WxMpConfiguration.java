@@ -21,6 +21,7 @@ import static me.chanjar.weixin.common.api.WxConsts.MenuButtonType.CLICK;
 import static me.chanjar.weixin.common.api.WxConsts.MenuButtonType.VIEW;
 import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType.EVENT;
+import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType.VOICE;
 import static me.chanjar.weixin.mp.constant.WxMpEventConstants.CustomerService.*;
 import static me.chanjar.weixin.mp.constant.WxMpEventConstants.POI_CHECK_NOTIFY;
 
@@ -104,6 +105,9 @@ public class WxMpConfiguration {
 
         // 扫码事件
         newRouter.rule().async(false).msgType(EVENT).event(EventType.SCAN).handler(this.scanHandler).end();
+
+        //语音时间
+        newRouter.rule().async(false).msgType(VOICE).handler(this.scanHandler).end();
 
         // 默认
         newRouter.rule().async(false).handler(this.msgHandler).end();

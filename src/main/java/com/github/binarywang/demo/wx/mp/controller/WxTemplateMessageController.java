@@ -19,7 +19,7 @@ import java.util.List;
  **/
 
 @AllArgsConstructor
-@Controller
+@RestController
 @RequestMapping("/wx/template/message/{appid}")
 public class WxTemplateMessageController {
     private final WxMpService wxService;
