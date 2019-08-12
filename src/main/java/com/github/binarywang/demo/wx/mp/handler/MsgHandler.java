@@ -59,8 +59,8 @@ public class MsgHandler extends AbstractHandler {
                 WxMpSemanticQuery wxMpSemanticQuery = new WxMpSemanticQuery();
                 wxMpSemanticQuery.setQuery(address);
                 wxMpSemanticQuery.setCategory("LOC_POI");
-//                semanticQuery.setLatitude(...);
-//                semanticQuery.setLongitude(...);
+                wxMpSemanticQuery.setLatitude(121.76F);
+                wxMpSemanticQuery.setLongitude(31.05F);
                 wxMpSemanticQuery.setCity("上海");
                 wxMpSemanticQuery.setAppid("wxafcb7752886aa01b");
                 wxMpSemanticQuery.setUid(wxMessage.getFromUser());
