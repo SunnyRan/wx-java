@@ -37,43 +37,43 @@ public class MsgHandler extends AbstractHandler {
         }
 
         //当用户输入关键词如“你好”，“客服”等，并且有客服在线时，把消息转发给在线客服
-        try {
-            if (StringUtils.startsWithAny(wxMessage.getContent(), "你好", "客服")
-                && weixinService.getKefuService().kfOnlineList()
-                .getKfOnlineList().size() > 0) {
-                return WxMpXmlOutMessage.TRANSFER_CUSTOMER_SERVICE()
-                    .fromUser(wxMessage.getToUser())
-                    .toUser(wxMessage.getFromUser()).build();
-            }
-        } catch (WxErrorException e) {
-            e.printStackTrace();
-        }
-//        List<String> name = Arrays.asList("发货", "发货地","发送","发单");
-//        String content = "";
 //        try {
-//            if (StringUtils.startsWithAny(wxMessage.getContent(), "发货", "发货地","发送","发单")) {
-//                String address = wxMessage.getContent();
-//                for(String first : name){
-//                    address = address.replaceFirst(first,"");
-//                }
-//                WxMpSemanticQuery wxMpSemanticQuery = new WxMpSemanticQuery();
-//                wxMpSemanticQuery.setQuery(address);
-//                wxMpSemanticQuery.setCategory("LOC_POI");
-//                wxMpSemanticQuery.setLatitude(121.76F);
-//                wxMpSemanticQuery.setLongitude(31.05F);
-//                wxMpSemanticQuery.setCity("上海");
-//                wxMpSemanticQuery.setAppid("wxafcb7752886aa01b");
-//                wxMpSemanticQuery.setUid(wxMessage.getFromUser());
-//
-//                WxMpSemanticQueryResult result = wx.semanticQuery(wxMpSemanticQuery);
-//                //TODO 组装回复消息
-//                content = "收到信息内容：" + JsonUtils.toJson(result);
+//            if (StringUtils.startsWithAny(wxMessage.getContent(), "你好", "客服")
+//                && weixinService.getKefuService().kfOnlineList()
+//                .getKfOnlineList().size() > 0) {
+//                return WxMpXmlOutMessage.TRANSFER_CUSTOMER_SERVICE()
+//                    .fromUser(wxMessage.getToUser())
+//                    .toUser(wxMessage.getFromUser()).build();
 //            }
-//        } catch (Exception e) {
+//
+//        } catch (WxErrorException e) {
 //            e.printStackTrace();
 //        }
 
-        String content = JsonUtils.toJson(wxMessage.getContent());
+        String str = "发单";
+        String address = wxMessage.getContent();
+        String content = "";
+        if (StringUtils.startsWith(address, "发单")) {
+            address = address.replaceFirst("发单", "");
+            WxMpSemanticQuery wxMpSemanticQuery = new WxMpSemanticQuery();
+            wxMpSemanticQuery.setQuery(address);
+            wxMpSemanticQuery.setCategory("LOC_POI");
+            wxMpSemanticQuery.setLatitude(121.76F);
+            wxMpSemanticQuery.setLongitude(31.05F);
+            wxMpSemanticQuery.setCity("上海");
+            wxMpSemanticQuery.setAppid("wxafcb7752886aa01b");
+            wxMpSemanticQuery.setUid(wxMessage.getFromUser());
+
+            WxMpSemanticQueryResult result = null;
+            try {
+                result = wx.semanticQuery(wxMpSemanticQuery);
+            } catch (WxErrorException e) {
+                e.printStackTrace();
+            }
+            //TODO 组装回复消息
+             content = "收到信息内容：" + JsonUtils.toJson(result);
+        }
+
         return new TextBuilder().build(content, wxMessage, weixinService);
 
     }
