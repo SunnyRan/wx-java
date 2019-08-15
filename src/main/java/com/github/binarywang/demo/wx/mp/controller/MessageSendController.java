@@ -30,8 +30,7 @@ public class MessageSendController {
 
     @RequestMapping(value = "/get/msg", method = RequestMethod.GET)
     public ApiResponse getOrderInfo(@RequestParam String userId) {
-        sendMessageService.getOrderInfo(userId);
-        return ApiResponse.success();
+        return ApiResponse.success(sendMessageService.getOrderInfo(userId));
     }
 
 

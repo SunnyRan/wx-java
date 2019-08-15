@@ -15,6 +15,7 @@ public class MessageInfo {
     private String expectedDeliveryTime;
     private String gratuity;
     private Timestamp timestamp;
+    private DriverInfo driverInfo;
 
     public String getUserId() {
         return userId;
@@ -102,5 +103,13 @@ public class MessageInfo {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public DriverInfo getDriverInfo() {
+        return driverInfo;
+    }
+
+    public void setDriverInfo(DriverInfo driverInfo) {
+        this.driverInfo = driverInfo;
     }
 }

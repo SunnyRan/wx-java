@@ -1,6 +1,8 @@
 package com.github.binarywang.demo.wx.mp.service;
 
+import com.github.binarywang.demo.wx.mp.entity.DriverInfo;
 import com.github.binarywang.demo.wx.mp.entity.MessageInfo;
+import com.github.binarywang.demo.wx.mp.entity.contant.DriverContant;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 @Service
 public class SendMessageService {
 
@@ -33,7 +36,14 @@ public class SendMessageService {
 
         messageInfo.setTimestamp(timestamp);
 
+        int index = (int) Math.floor(1 + Math.random() * 100) % 5;
+
+        DriverInfo driverInfo = DriverContant.diverList.get(index);
+
+        messageInfo.setDriverInfo(driverInfo);
+
         orderCache.put(userId, messageInfo);
+
 
     }
 
@@ -41,7 +51,7 @@ public class SendMessageService {
 
         MessageInfo messageInfo = orderCache.getIfPresent(userId);
 
-        if (null != messageInfo){
+        if (null != messageInfo) {
 
             return messageInfo;
         }
