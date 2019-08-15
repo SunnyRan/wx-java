@@ -43,7 +43,7 @@ public class WxRedirectController {
             CacheManager.put("userList",userMap);
 
 
-            map.put("user", userMap);
+            map.put("user", user);
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
