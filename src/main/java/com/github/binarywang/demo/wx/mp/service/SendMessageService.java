@@ -3,11 +3,12 @@ package com.github.binarywang.demo.wx.mp.service;
 import com.github.binarywang.demo.wx.mp.entity.MessageInfo;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+@Service
 public class SendMessageService {
 
     private final Cache<String, MessageInfo> orderCache = CacheBuilder.newBuilder()
